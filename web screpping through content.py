@@ -9,19 +9,18 @@ try:
  soup=BeautifulSoup(source,'lxml')
  html=soup.prettify()
  title=soup.title.text
-#print(title)
  bodi=soup.body.find('div',id='content')
  Headder=bodi.h1.text
-
- print (Headder)
  content_test=bodi.find('div',id='mw-content-text').find('div',class_='mw-parser-output').find_all('p')
- csvfile=open('1stwebscep.txt','w')
- csv_write=csv.writer(csvfile)
+
+ a=open('webscrap.docs','w',encoding='utf-8')
+ a.write(Headder+'\n')
+ c=''
  for content in content_test:
-    print(content.text)
-
-    print ()
+    c=c+str(content.text)+'\n\n\n'
+    #a.write((content.text))
+    #a.write('\n')
+ a.write(c)
+ a.close()
 except Exception as e:
-    print("you didnt input an wikipidea website")
-
-
+    print('please enter an wikipidea link')
